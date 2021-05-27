@@ -1,0 +1,31 @@
+{
+    "name": "crayon/nova-language-editor",
+    "description": "A Laravel Nova tool.",
+    "keywords": [
+        "laravel",
+        "nova"
+    ],
+    "license": "MIT",
+    "require": {
+        "php": ">=7.1.0",
+        "optimistdigital/nova-translatable": "^1.6",
+        "mcamara/laravel-localization": "^1.6"
+    },
+    "autoload": {
+        "psr-4": {
+            "Crayon\\NovaLanguageEditor\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Crayon\\NovaLanguageEditor\\ToolServiceProvider"
+            ]
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
