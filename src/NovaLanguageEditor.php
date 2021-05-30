@@ -27,9 +27,4 @@ class NovaLanguageEditor extends Tool
     {
         return view('nova-language-editor::navigation');
     }
-
-    public static function test(): string
-    {
-        return 'hey';
-    }
 }
