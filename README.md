@@ -1,6 +1,6 @@
 # Laravel Nova Langauge Management
 
-A tool for Laravel Nova to implement dynamic languages
+A tool for Laravel Nova to implement dynamic languages. The whole idea of this package is to rewrite the configuration files of several localization packages based on your inputs.
 
 ## Installation
 
@@ -19,6 +19,21 @@ NovaLanguageEditor::make()
 ### Permissions
 ```php
 NovaLanguageEditor::make()->canSee(fn($request) => $request->user()->isSuperAdmin()),
+```
+
+## Clarification
+
+This tool is  uses \
+[Nova Translatable](https://github.com/optimistdigital/nova-translatable)\
+[Macamara Laravel Localization](https://github.com/mcamara/laravel-localization)\
+[Nova Translation Editor](https://github.com/bernhardh/nova-translation-editor)
+
+If you do not have them installed it will install them for you. Also, make sure to publish the configuration files:
+
+```bash
+php artisan vendor:publish --provider="Mcamara\LaravelLocalization\LaravelLocalizationServiceProvider"
+php artisan vendor:publish --tag="nova-translatable-config"
+php artisan vendor:publish --provider="Bernhardh\NovaTranslationEditor\ToolServiceProvider"
 ```
 
 ## Contributing
