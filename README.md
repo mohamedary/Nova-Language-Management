@@ -14,11 +14,19 @@ composer require crayon/nova-language-management
 Open up NovaServiceProvider and register the tool in the tools method
 
 ```php
-NovaLanguageEditor::make()
+/**
+ * Get the tools that should be listed in the Nova sidebar.
+ *
+ * @return array
+ */
+public function tools()
+{
+    NovaLanguageEditor::make();
+}
 ```
 ### Permissions
 ```php
-NovaLanguageEditor::make()->canSee(fn($request) => $request->user()->isSuperAdmin()),
+    NovaLanguageEditor::make()->canSee(fn($request) => $request->user()->isSuperAdmin()),
 ```
 
 ## Clarification
