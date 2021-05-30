@@ -44,6 +44,16 @@ php artisan vendor:publish --tag="nova-translatable-config"
 php artisan vendor:publish --provider="Bernhardh\NovaTranslationEditor\ToolServiceProvider"
 ```
 
+### Migration
+Publish language_lines (Nova Translation Editor) migration
+```bash
+php artisan vendor:publish --provider="Spatie\TranslationLoader\TranslationServiceProvider" --tag="migrations"
+```
+
+```bash
+php artisan migrate
+```
+
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
