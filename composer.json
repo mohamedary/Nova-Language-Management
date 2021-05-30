@@ -1,15 +1,18 @@
 {
-    "name": "crayon/nova-language-editor",
-    "description": "A Laravel Nova tool.",
+    "name": "crayon/nova-language-management",
+    "description": "A Laravel Nova tool that helps you implement dynamic languages.",
     "keywords": [
         "laravel",
-        "nova"
+        "nova",
+        "language",
+        "language management"
     ],
     "license": "MIT",
     "require": {
         "php": ">=7.1.0",
         "optimistdigital/nova-translatable": "^1.6",
-        "mcamara/laravel-localization": "^1.6"
+        "mcamara/laravel-localization": "^1.6",
+        "bernhardh/nova-translation-editor": "^1.2"
     },
     "autoload": {
         "psr-4": {
