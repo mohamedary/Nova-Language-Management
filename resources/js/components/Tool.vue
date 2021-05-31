@@ -92,8 +92,8 @@ export default {
 
           if(locale === '')
               return this.$toasted.show('Please enter a locale', { type: 'error' });
-          if(locale.length > 2)
-              return this.$toasted.show('Locale should be only 2 characters', { type: 'error' })
+          if(locale.length > 6)
+              return this.$toasted.show('Locale should be smaller than 6 characters', { type: 'error' })
 
           this.$set(this.languages, locale, language);
       }
