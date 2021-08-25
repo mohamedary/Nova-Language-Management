@@ -34,6 +34,10 @@ class LanguageController
         switch($callback) {
             case "localization":
                 $configuration[$key] = $value;
+                foreach(\App\Models\Region::whereIsRoot()->get() as $region) {
+                    if($region->segment)
+                        $configuration[$key . '_' . $region->segment] = $value;
+                }
                 break;
             case "editor":
                 $configuration[$key] = array_keys($value);
