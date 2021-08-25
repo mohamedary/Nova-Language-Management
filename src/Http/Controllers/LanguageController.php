@@ -24,14 +24,6 @@ class LanguageController
 
         $configuration = include($path);
 
-        foreach(\App\Models\Region::whereIsRoot()->get() as $region) {
-            if($region->segment)
-                foreach($values as $locale => $val) {
-                    if(strlen($locale) == 2)
-                        $values[$locale . '_' . $region->segment] = $val;
-                }
-        }
-
         $configuration['supportedLocales'] = $values;
 
         return file_put_contents($path, "<?php return " . preg_replace("/[0-9]+ \=\>/i", '', $this->formatArray($configuration, true)). ";");
