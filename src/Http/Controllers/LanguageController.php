@@ -13,34 +13,56 @@ class LanguageController
     {
         $data = $request->all();
 
-        $this->editConfigurationFile(base_path() . '/config/laravellocalization.php', 'supportedLocales', $data, 'localization');
-        $this->editConfigurationFile(base_path() . '/config/nova-translatable.php', 'locales', $data, 'translatable');
-        $this->editConfigurationFile(base_path() . '/config/nova-translation-editor.php', 'languages', $data, 'editor');
+        $this->editLocalizationFile($data);
+        $this->editTranslatableFile($data);
+        $this->editTranslationEditorFile($data);
     }
 
-    /**
-     * Edits a config file that returns an array
-     *
-     * @param string $path
-     * @param string $key
-     * @param array $value
-     * @param string $callback
-     * @return bool
-     */
-    private function editConfigurationFile(string $path, string $key, array $value, $callback = ""): bool
+    private function editLocalizationFile($values)
     {
+        $path = base_path() . '/config/laravellocalization.php';
+
         $configuration = include($path);
 
-        switch($callback) {
-            case "localization":
-                $configuration[$key] = $value;
-                break;
-            case "editor":
-                $configuration[$key] = array_keys($value);
-                break;
-            case "translatable":
-                $configuration[$key] = $this->array_column_ext($value, "name", -1);
+        foreach(\App\Models\Region::whereIsRoot()->get() as $region) {
+            if($region->segment)
+                foreach($values as $locale => $val) {
+                    if(strlen($locale) == 2)
+                        $values[$locale . '_' . $region->segment] = $val;
+                }
         }
+
+        $configuration['supportedLocales'] = $values;
+
+        return file_put_contents($path, "<?php return " . preg_replace("/[0-9]+ \=\>/i", '', $this->formatArray($configuration, true)). ";");
+    }
+
+    private function editTranslationEditorFile($values)
+    {
+        $path = base_path() . '/config/nova-translation-editor.php';
+
+        $configuration = include($path);
+
+        $values = array_filter($values, fn($val) =>
+            strlen($val) <= 2
+            , ARRAY_FILTER_USE_KEY);
+
+        $configuration['languages'] = array_keys($values);
+
+        return file_put_contents($path, "<?php return " . preg_replace("/[0-9]+ \=\>/i", '', $this->formatArray($configuration, true)). ";");
+    }
+
+    private function editTranslatableFile($values)
+    {
+        $path = base_path() . '/config/nova-translatable.php';
+
+        $configuration = include($path);
+
+        $values = array_filter($values, fn($val) =>
+            strlen($val) <= 2
+            , ARRAY_FILTER_USE_KEY);
+
+        $configuration['locales'] = $this->array_column_ext($values, "name", -1);
 
         return file_put_contents($path, "<?php return " . preg_replace("/[0-9]+ \=\>/i", '', $this->formatArray($configuration, true)). ";");
     }
