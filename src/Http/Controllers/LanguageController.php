@@ -33,13 +33,6 @@ class LanguageController
 
         switch($callback) {
             case "localization":
-                foreach(\App\Models\Region::whereIsRoot()->get() as $region) {
-                    if($region->segment)
-                        foreach($value as $locale => $val) {
-                            if(strlen($locale) == 2)
-                                $value[$locale . '_' . $region->segment] = $val;
-                        }
-                }
                 $configuration[$key] = $value;
                 break;
             case "editor":
