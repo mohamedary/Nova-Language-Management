@@ -11,6 +11,11 @@ composer require crayon/nova-language-management
 ```
 
 ## Usage
+Import the NovaLanguageEditor class at the top of your NovaServiceProvider like below:
+```php
+use Crayon\NovaLanguageEditor\NovaLanguageEditor;
+```
+
 Open up NovaServiceProvider and register the tool in the tools method
 
 ```php
