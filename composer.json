@@ -11,9 +11,9 @@
     "require": {
         "php": ">=7.2.0",
         "laravel/nova": "^4.0",
-        "optimistdigital/nova-translatable": "^1.6",
-        "mcamara/laravel-localization": "^1.6",
-        "bernhardh/nova-translation-editor": "^1.2"
+        "optimistdigital/nova-translatable": "^2.0.6",
+        "mcamara/laravel-localization": "^1.7",
+        "bernhardh/nova-translation-editor": "^2.0.2"
     },
     "autoload": {
         "psr-4": {
