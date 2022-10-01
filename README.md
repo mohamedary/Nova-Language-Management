@@ -2,6 +2,8 @@
 
 A tool for Laravel Nova to implement dynamic languages. The whole idea of this package is to rewrite the configuration files of several localization packages based on your inputs.
 
+NOTE: This package does not support Nova 4 right now. We are working on making it available soon enough.
+
 ## Installation
 
 Use the package manager [composer](https://pip.pypa.io/en/stable/) to install this tool.
