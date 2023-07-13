@@ -36,7 +36,7 @@ class LanguageController
         $configuration = include($path);
 
         $values = array_filter($values, fn($val) =>
-            strlen($val) <= 2
+            strlen($val) >= 2
             , ARRAY_FILTER_USE_KEY);
 
         $configuration['languages'] = array_keys($values);
@@ -51,7 +51,7 @@ class LanguageController
         $configuration = include($path);
 
         $values = array_filter($values, fn($val) =>
-            strlen($val) <= 2
+            strlen($val) >= 2
             , ARRAY_FILTER_USE_KEY);
 
         $configuration['locales'] = $this->array_column_ext($values, "name", -1);
